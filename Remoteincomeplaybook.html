@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>রিমোট ইনকাম ব্লুপ্রিন্ট (অফিসিয়াল AIS এডিশন): জিরো স্কিল ও স্মার্টফোন দিয়ে আন্তর্জাতিক আয়ের ফিল্ড ম্যানুয়াল</title>
+<!-- Google Fonts: Hind Siliguri, Plus Jakarta Sans & JetBrains Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  :root {
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+    --accent: #10b981;
+    --accent-dark: #047857;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg-surface: #ffffff;
+    --bg-page: #070d19;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border: #e2e8f0;
+    --code-bg: #0b1329;
+    --terminal-border: #1e293b;
+    --ais-gold: #fbbf24;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+    background-color: #f1f5f9;
+    color: var(--text-main);
+    line-height: 1.68;
+    font-size: 14px;
+    padding: 20px 10px;
+  }
+
+  .ebook-container {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  /* AIS Header & Branding Bar */
+  .brand-bar {
+    background: #040914;
+    padding: 14px 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .brand-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .brand-crest {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: 1.5px solid var(--ais-gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+  }
+
+  .brand-text-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: 0.3px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .brand-text-sub {
+    font-size: 11px;
+    color: var(--ais-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    display: block;
+  }
+
+  .brand-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .badge-verified-ais {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #34d399;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+
+  /* Cover Styling */
+  .cover {
+    background: linear-gradient(145deg, #050b18 0%, #0c203d 55%, #051327 100%);
+    color: #ffffff;
+    padding: 60px 45px 50px;
+    text-align: center;
+    position: relative;
+    border-bottom: 5px solid var(--primary);
+  }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(2, 132, 199, 0.22);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: #38bdf8;
+    padding: 6px 18px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .cover h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    color: #f8fafc;
+  }
+
+  .cover p {
+    font-size: 15.5px;
+    color: #94a3b8;
+    max-width: 760px;
+    margin: 0 auto 28px;
+  }
+
+  .cover-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    font-size: 12.5px;
+    color: #cbd5e1;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 22px;
+  }
+
+  .cover-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Body Content */
+  .content {
+    padding: 40px 48px;
+  }
+
+  @media (max-width: 768px) {
+    .content { padding: 25px 20px; }
+    .cover { padding: 45px 20px; }
+    .cover h1 { font-size: 24px; }
+    .brand-bar { padding: 12px 20px; flex-direction: column; gap: 10px; align-items: flex-start; }
+    .brand-actions { width: 100%; justify-content: flex-start; }
+  }
+
+  /* Interactive Decision Engine / Quiz Card */
+  .decision-engine-card {
+    background: linear-gradient(135deg, #0b1528 0%, #102445 100%);
+    color: #ffffff;
+    border: 2px solid #0284c7;
+    border-radius: 12px;
+    padding: 26px 28px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.25);
+  }
+
+  .engine-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .engine-header h3 {
+    font-size: 18px;
+    color: #38bdf8;
+    font-weight: 700;
+  }
+
+  .quiz-step {
+    margin-bottom: 18px;
+  }
+
+  .quiz-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+  .quiz-opt {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #f1f5f9;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .quiz-opt:hover {
+    background: rgba(2, 132, 199, 0.25);
+    border-color: #38bdf8;
+  }
+
+  .quiz-opt.active {
+    background: #0284c7;
+    border-color: #38bdf8;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .engine-result-panel {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid #38bdf8;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .result-metric-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .metric-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #38bdf8;
+  }
+
+  /* Chapter Title Header */
+  .chapter-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 40px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .chapter-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .chapter-header i {
+    width: 26px;
+    height: 26px;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .chapter-header h2 {
+    font-size: 18.5px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* Grid Layouts */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* Structural Cards */
+  .card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+
+  .card-danger { background: #fff5f5; border-color: #fecaca; }
+  .card-success { background: #f0fdf4; border-color: #bbf7d0; }
+  .card-warning { background: #fffbeb; border-color: #fde68a; }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+
+  .card-danger .card-title { color: var(--danger); }
+  .card-success .card-title { color: var(--accent-dark); }
+  .card-warning .card-title { color: #b45309; }
+
+  /* Interactive Script & Prompt Terminal Boxes */
+  .interactive-box {
+    background: var(--code-bg);
+    color: #f1f5f9;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    position: relative;
+    border: 1px solid var(--terminal-border);
+  }
+
+  .box-label {
+    position: absolute;
+    top: -10px;
+    right: 14px;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  .script-content {
+    font-family: 'JetBrains Mono', 'Plus Jakarta Sans', monospace;
+    font-size: 12.5px;
+    line-height: 1.62;
+    white-space: pre-wrap;
+    color: #cbd5e1;
+  }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #38bdf8;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    background: #334155;
+    color: #ffffff;
+  }
+
+  /* Data Table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  .data-table th, .data-table td {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .data-table th {
+    background: #f1f5f9;
+    color: var(--text-main);
+    font-weight: 700;
+  }
+
+  .data-table tr:nth-child(even) { background: #fafafa; }
+
+  /* Conversion Funnel */
+  .funnel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .funnel-stage {
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 11px 16px;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+
+  .funnel-rate {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 700;
+  }
+
+  /* Step by Step Progression */
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 14px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    border-radius: 8px;
+  }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    background: var(--primary);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .step-body h4 {
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .step-body p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  /* Hyperlinks & Badges */
+  .btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dashed var(--primary);
+  }
+
+  .btn-link:hover {
+    color: var(--primary-dark);
+    border-bottom-style: solid;
+  }
+
+  .badge-free { background: #dcfce7; color: #15803d; font-size: 10.5px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .badge-freemium { background: #fef3c7; color: #b45309; font-size: 10.5px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+
+  /* AIS Dedicated Verification Hub (End of Playbook) */
+  .ais-rights-hub {
+    background: linear-gradient(135deg, #050b18 0%, #0d1e38 100%);
+    color: #ffffff;
+    border: 2px solid var(--ais-gold);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 45px 0 20px;
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.4);
+  }
+
+  .ais-hub-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+  }
+
+  .ais-large-crest {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: 2px solid var(--ais-gold);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 20px;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+  }
+
+  .ais-hub-title h3 {
+    font-size: 18px;
+    color: #f8fafc;
+    font-weight: 700;
+  }
+
+  .ais-hub-title p {
+    font-size: 12.5px;
+    color: #94a3b8;
+  }
+
+  .ais-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .ais-contact-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #f1f5f9;
+    transition: all 0.25s ease;
+  }
+
+  .ais-contact-card:hover {
+    background: rgba(2, 132, 199, 0.2);
+    border-color: #38bdf8;
+    transform: translateY(-2px);
+  }
+
+  .ais-icon-wrap {
+    width: 38px;
+    height: 38px;
+    background: rgba(2, 132, 199, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #38bdf8;
+    flex-shrink: 0;
+  }
+
+  .ais-contact-detail strong {
+    font-size: 13px;
+    display: block;
+    color: #f8fafc;
+  }
+
+  .ais-contact-detail span {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .rights-notice {
+    font-size: 11.5px;
+    color: #94a3b8;
+    line-height: 1.6;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 12px 16px;
+    border-radius: 6px;
+    border-left: 3px solid var(--ais-gold);
+    margin-top: 15px;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="ebook-container">
+
+  <!-- AIS OFFICIAL BRANDING BAR -->
+  <div class="brand-bar">
+    <a href="https://www.facebook.com/share/1ZSuGprkLY/" target="_blank" class="brand-logo-wrap">
+      <div class="brand-crest">AIS</div>
+      <div>
+        <span class="brand-text-name">Army IBA Specialist</span>
+        <span class="brand-text-sub">Official Digital Publication Wing</span>
+      </div>
+    </a>
+    <div class="brand-actions">
+      <div class="badge-verified-ais">
+        <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i>
+        অফিসিয়াল অথেন্টিকেশন ও কপিরাইট ভেরিফায়েড
+      </div>
+    </div>
+  </div>
+
+  <!-- COVER SECTION -->
+  <div class="cover">
+    <div class="cover-badge">
+      <i data-lucide="cpu" style="width: 14px; height: 14px;"></i>
+      সংস্করণ ৪.০: লাইভ ডিসিশন ইঞ্জিন ও পারসোনালাইজড আর্নিং রুট
+    </div>
+    <h1>রিমোট ইনকাম ব্লুপ্রিন্ট</h1>
+    <p>জিরো স্কিল ও সাধারণ স্মার্টফোন দিয়ে আন্তর্জাতিক ক্লায়েন্ট শনাক্তকরণ, রিমোট কনভার্শন এবং লিগ্যাল ব্যাংকিং পাইপলাইনের চূড়ান্ত মেকানিকাল গাইডলাইন</p>
+
+    <div class="cover-meta">
+      <span><i data-lucide="compass" style="width: 14px; height: 14px;"></i> ইন্টারেক্টিভ স্কিল ইঞ্জিন</span>
+      <span><i data-lucide="smartphone" style="width: 14px; height: 14px;"></i> মোবাইল-ফার্স্ট প্রোডাকশন</span>
+      <span><i data-lucide="terminal" style="width: 14px; height: 14px;"></i> টেস্টেড এআই প্রম্পট স্ট্যাক</span>
+      <span><i data-lucide="shield-check" style="width: 14px; height: 14px;"></i> বাংলাদেশ ব্যাংক ও এনবিআর ভেরিফায়েড</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- INTERACTIVE DECISION ENGINE (ENTRY POINT) -->
+    <div class="decision-engine-card" id="engine-section">
+      <div class="engine-header">
+        <i data-lucide="sparkles" style="width: 22px; height: 22px; color: #38bdf8;"></i>
+        <div>
+          <h3>ইন্টারেক্টিভ স্কিল ও আর্নিং ক্যালকুলেটর (৩-স্টেপ ফিল্টার)</h3>
+          <p style="font-size: 12.5px; color: #94a3b8;">কোন পথে আপনার সবচেয়ে দ্রুত ও সর্বোচ্চ ইনকাম হবে—৩টি প্রশ্নের মাধ্যমে এখনি ফিল্টার করুন:</p>
+        </div>
+      </div>
+
+      <!-- Question 1 -->
+      <div class="quiz-step">
+        <span class="quiz-label">১. আপনার বর্তমান স্ট্যাটাস ও দৈনিক ফাঁকা সময় কতটুকু?</span>
+        <div class="quiz-options" id="opt-group-time">
+          <button class="quiz-opt" onclick="selectOption('time', 'full', this)">
+            <i data-lucide="user-x" style="width: 15px; height: 15px;"></i> বেকার / ছাত্র (দিনে ৪–৬ ঘণ্টা সময়)
+          </button>
+          <button class="quiz-opt" onclick="selectOption('time', 'part', this)">
+            <i data-lucide="briefcase" style="width: 15px; height: 15px;"></i> চাকরিজীবী (দিনে মাত্র ১–২ ঘণ্টা সময়)
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-step">
+        <span class="quiz-label">২. আপনার ইংরেজি কমিউনিকেশনের বর্তমান অবস্থা কেমন?</span>
+        <div class="quiz-options" id="opt-group-eng">
+          <button class="quiz-opt" onclick="selectOption('eng', 'low', this)">
+            <i data-lucide="message-square-off" style="width: 15px; height: 15px;"></i> ইংরেজিতে প্রচণ্ড ভয় / জিরো স্পোকেন
+          </button>
+          <button class="quiz-opt" onclick="selectOption('eng', 'mid', this)">
+            <i data-lucide="message-square" style="width: 15px; height: 15px;"></i> পড়ে বুঝতে পারি, টেক্সট মেসেজিং সম্ভব
+          </button>
+          <button class="quiz-opt" onclick="selectOption('eng', 'high', this)">
+            <i data-lucide="sparkles" style="width: 15px; height: 15px;"></i> ভালো ও আত্মবিশ্বাসী
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-step">
+        <span class="quiz-label">৩. আপনার সবচেয়ে পছন্দের কাজের ধরণ কোনটি?</span>
+        <div class="quiz-options" id="opt-group-pref">
+          <button class="quiz-opt" onclick="selectOption('pref', 'visual', this)">
+            <i data-lucide="film" style="width: 15px; height: 15px;"></i> ভিজ্যুয়াল কনটেন্ট (ভিডিও/গ্রাফিক্স)
+          </button>
+          <button class="quiz-opt" onclick="selectOption('pref', 'data', this)">
+            <i data-lucide="table" style="width: 15px; height: 15px;"></i> রিসার্চ, স্প্রেডশিট ও ডাটা কালেকশন
+          </button>
+          <button class="quiz-opt" onclick="selectOption('pref', 'ops', this)">
+            <i data-lucide="mail" style="width: 15px; height: 15px;"></i> ইমেইল, ক্যালেন্ডার ও অ্যাসিস্ট্যান্ট সাপোর্ট
+          </button>
+        </div>
+      </div>
+
+      <!-- Output Panel -->
+      <div class="engine-result-panel" id="engine-result">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+          <h4 id="res-title" style="color: #38bdf8; font-size: 16px; font-weight: 700;">আপনার জন্য সেরা রিকমেন্ডেড স্কিল</h4>
+          <span id="res-badge" class="badge-free">মাস্টার চয়েস</span>
+        </div>
+        <p id="res-desc" style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px;"></p>
+        
+        <div class="result-metric-grid">
+          <div class="result-metric-card">
+            <span class="metric-label">মাসিক আয়ের সম্ভাব্য সীমা</span>
+            <span class="metric-value" id="res-earning">$২০০ – $৪০০ (৳২৪,০০০ – ৳৪৮,০০০)</span>
+          </div>
+          <div class="result-metric-card">
+            <span class="metric-label">দক্ষতা অর্জনে সময়</span>
+            <span class="metric-value" id="res-time">৭ – ১০ দিন</span>
+          </div>
+          <div class="result-metric-card">
+            <span class="metric-label">কাজের সেরা প্ল্যাটফর্ম</span>
+            <span class="metric-value" id="res-platform">X (Twitter) & LinkedIn</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+          <strong style="font-size: 12.5px; color: #f8fafc; display: block; margin-bottom: 6px;">১০০% ফ্রি রিসোর্স ও লার্নিং ট্র্যাক:</strong>
+          <div id="res-resources" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER 1: PSYCHOLOGY & CONVERSION PROBABILITY -->
+    <div class="chapter-header">
+      <i data-lucide="trending-up"></i>
+      <h2>অধ্যায় ১: লোকাল সিন্ডিকেট ডিসেকশন, ক্লায়েন্ট সাইকোলজি ও প্রোবাবিলিটি ম্যাথ</h2>
+    </div>
+
+    <p>বাংলাদেশে ৯৫% নতুন ফ্রিল্যান্সার প্রথম ২১ দিনে ব্যর্থ হয়ে সরে যান। কারণ তারা ভাবেন ক্লায়েন্ট তাদের দয়া করে কাজ দেবে অথবা সার্টিফিকেট দেখে মুগ্ধ হবে। আন্তর্জাতিক ক্লায়েন্টের ব্রেইন সম্পূর্ণ ভিন্ন মেকানিক্সে কাজ করে।</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" style="color: var(--primary);">
+          <i data-lucide="brain-circuit" style="width: 16px; height: 16px;"></i> পশ্চিমা ক্লায়েন্টের কগনিটিভ ফিল্টার (Client Mindset)
+        </div>
+        <ul style="padding-left: 18px; font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          <li><strong>টাইম-পুওর মেন্টালিটি:</strong> একজন ব্যস্ত আমেরিকান বা ইউরোপীয় বিজনেস ওনার দিনে গড়ে ১২০+ স্প্যাম ইমেইল পান। তারা দীর্ঘ মেসেজ পড়েন না।</li>
+          <li><strong>রিস্ক অ্যাভার্সন (Risk Aversion):</strong> তারা ভয় পান—কাউকে টাকা দিলে কাজটা ঠিক সময়ে হবে কি না, নাকি লোকটা মাঝপথে হারিয়ে যাবে।</li>
+          <li><strong>দ্য ফাইভ-সেকেন্ড স্ক্রিন:</strong> প্রথম ৫ সেকেন্ডে যদি কোনো স্পষ্ট প্রমাণ (Proof of Execution) না দেখে, ব্রেইন তৎক্ষণাৎ ইমেইল/মেসেজ আর্চিভ করে দেয়।</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--danger);">
+          <i data-lucide="ban" style="width: 16px; height: 16px;"></i> ৩টি ভুল যা ক্লায়েন্টকে তৎক্ষণাৎ দূরে সরিয়ে দেয়
+        </div>
+        <ul style="padding-left: 18px; font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          <li><strong>"Sir/Respected Boss" সম্বোধন:</strong> আমেরিকান বিজনেস কালচারে "Sir" বলা মানেই আপনি নিজেকে অধস্তন বা থার্ড-ওয়ার্ল্ড স্প্যামার হিসেবে তুলে ধরছেন। নাম ধরে সম্বোধন বাধ্যতামূলক।</li>
+          <li><strong>অভিজ্ঞতার বড়াই করা:</strong> "I have 5 years experience in editing" শুনলে তারা বিরক্ত হয়। অভিজ্ঞতা মুখে নয়, লিংকে দেখাতে হয়।</li>
+          <li><strong>কাজের জন্য মিনতি করা:</strong> "Please give me a chance, I am poor" লিখলে প্রফেশনাল কমিউনিকেশন স্বয়ংক্রিয়ভাবে অচল হয়ে যায়।</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="funnel-container">
+      <div class="funnel-stage">
+        <span><strong>ধাপ ১: ভ্যালু-ফার্স্ট আউটরিচ প্রেরণ</strong> (আগে তৈরি করা স্যাম্পল উপহার সহ)</span>
+        <span class="funnel-rate">১০০ টি সুনির্দিষ্ট মেসেজ</span>
+      </div>
+      <div class="funnel-stage">
+        <span><strong>ধাপ ২: ক্লায়েন্ট রিপ্লাই ও প্রাথমিক আলোচনা</strong></span>
+        <span class="funnel-rate">৬ – ৮ টি রেসপন্স (৬-৮%)</span>
+      </div>
+      <div class="funnel-stage">
+        <span><strong>ধাপ ৩: টেস্ট স্যাম্পল রিভিউ ও প্যাকেজ সিলেকশন</strong></span>
+        <span class="funnel-rate">২ – ৩ জন সিরিয়াস ক্লায়েন্ট</span>
+      </div>
+      <div class="funnel-stage" style="background: #f0fdf4; border-color: #bbf7d0;">
+        <span><strong style="color: var(--accent-dark);">ধাপ ৪: চূড়ান্ত মাসিক চুক্তি (Monthly Retainer)</strong></span>
+        <span class="funnel-rate" style="background: #dcfce7; color: #166534;">১ জন ফিক্সড ক্লায়েন্ট ($২৫০–$৪৫০/মাস)</span>
+      </div>
+    </div>
+
+    <!-- CHAPTER 2: MOBILE PRODUCTION SPECIFICATIONS -->
+    <div class="chapter-header">
+      <i data-lucide="sliders"></i>
+      <h2>অধ্যায় ২: মোবাইল প্রোডাকশন স্পেসিফিকেশন ও জিরো-ফ্রিকশন ডেলিভারি</h2>
+    </div>
+
+    <p>মোবাইল দিয়ে কাজ করার সময় সাধারণ অপেশাদার ভুলগুলো দূর করার জন্য নির্দিষ্ট টেকনিক্যাল সেটিংস ও ফ্রেমওয়ার্ক মেনে চলা আবশ্যক:</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" style="color: var(--primary);">
+          <i data-lucide="video" style="width: 16px; height: 16px;"></i> CapCut মোবাইল টেকনিক্যাল স্ট্যান্ডার্ড
+        </div>
+        <ul style="padding-left: 18px; font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          <li><strong>ডিলিট ডিফল্ট এন্ডিং:</strong> টাইমলাইনের একেবারে শেষে থাকা ২ সেকেন্ডের কালো CapCut লোগো ক্লিপটি ট্যাপ করে নিশ্চিতভাবে Delete করুন।</li>
+          <li><strong>কাটিং রিদম (0.3s Rule):</strong> অডিও ট্র্যাকে স্পিকারের প্রতিটি বাক্যের মাঝখানের ০.৩ সেকেন্ডের বেশি কোনো নীরবতা বা শ্বাস নেওয়ার অংশ রাখবেন না। স্পিড বাড়ান ১.১x এ।</li>
+          <li><strong>অটো-ক্যাপশন স্টাইল:</strong> ফন্ট: The Bold Font / Montserrat Black; কালার: ইয়েলো (#FFE500) বা সায়ান (#00F0FF); টেক্সট অ্যানিমেশন: বাউন্সি পপ (Pop/Bounce Out)। একবারে মাত্র ১–২টি শব্দ স্ক্রিনে ফ্ল্যাশ করবে।</li>
+          <li><strong>রেন্ডার সেটিংস:</strong> Resolution: 1080p, Frame Rate: 60fps, Codec: H.264, Bitrate: Recommended/Higher।</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-dark);">
+          <i data-lucide="image" style="width: 16px; height: 16px;"></i> Canva মোবাইল থাম্বনেইল ফ্রেমওয়ার্ক
+        </div>
+        <ul style="padding-left: 18px; font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          <li><strong>দ্য ৩-এলিমেন্ট রুল:</strong> ১টি স্পষ্ট মুখের অভিব্যক্তি + ৩ শব্দের বড় হাই-কনট্রাস্ট ফন্ট + ১টি আইকনিক অবজেক্ট। এর বেশি কিছু দিলে মোবাইল স্ক্রিনে ঘিঞ্জি দেখায়।</li>
+          <li><strong>কনট্রাস্ট ব্যাকগ্রাউন্ড:</strong> ডার্ক ব্যাকগ্রাউন্ড (#0F172A) হলে ফন্ট টেক্সট হবে উজ্জ্বল নিয়ন ইয়েলো বা পিওর হোয়াইট উইথ ব্ল্যাক ড্রপ শ্যাডো (Offset 40, Blur 50)।</li>
+          <li><strong>মোবাইল টেস্ট (The Squint Test):</strong> ফোন হাত থেকে দেড় হাত দূরে নিয়ে চোখ ছোট করে দেখুন—লেখা ও ফেস কি এক নজরে পড়া যাচ্ছে? না গেলে ফন্ট সাইজ ২৫% বাড়ান।</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ZERO FRICTION STREAMING -->
+    <div class="card card-warning" style="margin-top: 14px;">
+      <div class="card-title"><i data-lucide="play-circle" style="width: 16px; height: 16px;"></i> জিরো-ফ্রিকশন স্ট্রিমিং মেথড (Zero-Friction Preview Protocol)</div>
+      <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+        গুগল ড্রাইভে কোনো ক্লায়েন্ট ফাইল ডাউনলোড করে দেখার জন্য ২০ সেকেন্ড অপেক্ষা করবে না। সমাধান: আপনার ফোন থেকে এডিট করা শর্ট ভিডিওটি আপনার ইউটিউব চ্যানেলে আপলোড করুন এবং ভিজিবিলিটি দিন <strong>"Unlisted"</strong>। ক্লায়েন্টকে এই লিংক পাঠালে সে এক ক্লিকে ফোনে কোনো লগইন ছাড়াই ফুল ৬০fps-এ ভিডিও প্রিভিউ দেখতে পাবে।
+      </p>
+    </div>
+
+    <!-- CHAPTER 3: AI PROMPT STACK & COMPARISON -->
+    <div class="chapter-header">
+      <i data-lucide="cpu"></i>
+      <h2>অধ্যায় ৩: মাস্টার এআই প্রম্পট প্যাক ও টুলস কম্প্যারিজন</h2>
+    </div>
+
+    <p>এআই টুলসের ফ্রি টিয়ার থেকে শতভাগ প্রফেশনাল ফলাফল বের করে আনার জন্য নিচের টেস্টেড মাস্টার প্রম্পটগুলো ব্যবহার করুন:</p>
+
+    <!-- Master Prompt 1 -->
+    <div class="interactive-box">
+      <div class="box-label">প্রম্পট ১: রাফ আইডিয়া থেকে ৩-বাক্যের আমেরিকান পিচ (Gemini / ChatGPT)</div>
+      <div class="script-content">Act as an elite B2B sales copywriter specializing in video creator outreach. 
+I have created a 40-second optimized sample Short for a US YouTube creator named [Target Creator Name]. 
+The creator's niche is [Podcasting / Fitness / SaaS]. 
+The core value I am providing: Hook enhancement, dynamic subtitle pacing, and removal of dead silence.
+
+Write a 3-sentence, high-conversion cold message in clear, polite, and confident American business tone.
+Constraints:
+- Sentence 1: Acknowledge a specific point from their video without generic flattery.
+- Sentence 2: Provide the 1-click preview link directly showing the edited asset built specifically for them.
+- Sentence 3: Frictionless call-to-action offering a monthly automated package (no pushy sales).
+- DO NOT use words like "Dear", "Respected Sir", "Delighted", or "Humble".
+- Output only the final message ready to copy.</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('প্রম্পট ১ কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copy Prompt
+      </button>
+    </div>
+
+    <!-- Master Prompt 2 -->
+    <div class="interactive-box">
+      <div class="box-label">প্রম্পট ২: যেকোনো দীর্ঘ পডকাস্ট থেকে হাই-ভাইরাল হুক এক্সট্রাকশন</div>
+      <div class="script-content">Act as a viral YouTube Shorts and TikTok retention strategist. 
+Analyze the following transcript segment of a 5-minute conversation:
+"""
+[Paste Raw Transcript Here]
+"""
+
+Tasks:
+1. Identify the single most counter-intuitive or emotionally gripping 30-45 second window.
+2. Rewrite the first 3 seconds into a punchy "Pattern Interrupt" hook that stops mobile scrolling immediately.
+3. Mark exact timestamps where B-roll images and Sound Effects (Whoosh, Pop, Ding) should be placed for maximum retention.</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('প্রম্পট ২ কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copy Prompt
+      </button>
+    </div>
+
+    <!-- Master Prompt 3 -->
+    <div class="interactive-box">
+      <div class="box-label">প্রম্পট ৩: Ideogram থাম্বনেইল ব্যাকগ্রাউন্ড ও টেক্সট আর্ট প্রম্পট</div>
+      <div class="script-content">A dramatic, high-contrast YouTube thumbnail background for a business channel. 
+On the left side: A sleek, modern desk setup with dark ambient cinematic lighting, blue and orange rim lights. 
+On the right side: Bold 3D typography rendered clearly with text reading "DO NOT MISS". 
+Photorealistic, 8k, Unreal Engine 5 render style, hyper-detailed, clean focus, 16:9 aspect ratio. --ar 16:9</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('প্রম্পট ৩ কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copy Prompt
+      </button>
+    </div>
+
+    <!-- CHAPTER 4: OUTREACH & OBJECTION CONVERSION -->
+    <div class="chapter-header">
+      <i data-lucide="send"></i>
+      <h2>অধ্যায় ৪: স্প্যাম-ফ্রি আউটরিচ ইঞ্জিন, নো-রিপ্লাই ফলো-আপ ও অবজেকশন ক্লিনিং</h2>
+    </div>
+
+    <div class="card card-danger" style="margin-bottom: 14px;">
+      <div class="card-title"><i data-lucide="alert-octagon" style="width: 16px; height: 16px;"></i> ফ্রি জিমেইল স্প্যাম ব্ল্যাকহোল এড়ানোর নিয়ম</div>
+      <p style="font-size: 12.5px; color: var(--text-muted);">
+        একটি সাধারণ ফ্রি জিমেইল একাউন্ট (যেমন: `tamim.editor@gmail.com`) থেকে ইউএসএর কোনো কোম্পানির কর্পোরেট ডোমেইনে (`steve@agency.com`) কোল্ড মেইল পাঠালে গুগল বা আউটলুকের ফিল্টার সেটিকে সরাসরি স্প্যাম ফোল্ডারে ফেলে দেয়।<br>
+        <strong>সমাধান:</strong> নতুনদের জন্য শতভাগ ডেলিভারি নিশ্চিত করতে হবে <strong>প্ল্যাটফর্ম-টু-প্ল্যাটফর্ম ইনবক্সিংয়ের মাধ্যমে (X DMs, LinkedIn Connection Note, Instagram Creator DMs)</strong> অথবা ইউটিউবারদের বায়োতে দেওয়া পাবলিক ইনকোয়ারি মেইলে।
+      </p>
+    </div>
+
+    <!-- Script 1 -->
+    <div class="interactive-box">
+      <div class="box-label">স্ক্রিপ্ট ১: প্রাথমিক ভ্যালু পিচ (YouTube Unlisted Link সহ)</div>
+      <div class="script-content">Subject: Vertical Short cut for your episode on [Topic]
+
+Hi [Name], loved your point on [Specific Insight from their video].
+
+I noticed your YouTube channel is missing vertical Shorts to capture mobile viewers, so I took 45 seconds of your latest episode and edited it with dynamic captions and pacing: [Insert Unlisted YouTube Shorts Link]
+
+If you like the editing, feel free to post it right away. If you'd like 12 of these per month managed for you on autopilot, I can handle them directly.</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('স্ক্রিপ্ট ১ কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Tap to Copy
+      </button>
+    </div>
+
+    <!-- Script 2 -->
+    <div class="interactive-box">
+      <div class="box-label">স্ক্রিপ্ট ২: ৭২ ঘণ্টা পর নো-রিপ্লাই ফলো-আপ</div>
+      <div class="script-content">Hi [Name], just checking in to see if you had a chance to watch the 45-second vertical cut I sent earlier: [Re-insert Unlisted Link]
+
+No worries if you're swamped right now. If you'd like me to optimize another clip with a different pacing style, let me know!</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('ফলো-আপ স্ক্রিপ্ট কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Tap to Copy
+      </button>
+    </div>
+
+    <!-- Script 3: Objection Handling -->
+    <div class="interactive-box">
+      <div class="box-label">স্ক্রিপ্ট ৩: ক্লায়েন্টের অবজেকশন হ্যান্ডলিং ("Your price is too high")</div>
+      <div class="script-content">Hi [Name], I completely understand budget constraints. 
+
+To keep it aligned with your current targets, we can start with the Starter Pack (8 videos/month instead of 16) at $140. That still guarantees 2 high-retention shorts every week without any upfront long-term contract. 
+
+Would that work for your schedule this month?</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('অবজেকশন স্ক্রিপ্ট কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Tap to Copy
+      </button>
+    </div>
+
+    <!-- Script 4: Pricing Menu -->
+    <div class="interactive-box">
+      <div class="box-label">স্ক্রিপ্ট ৪: ৩-টায়ার মাসিক প্রাইসিং মেনু</div>
+      <div class="script-content">Hi [Name], I keep pricing simple and predictable based on monthly deliverables:
+
+• Starter Pack ($150/mo): 8 edited vertical Shorts/Reels (2 per week) + Custom Thumbnails
+• Growth Pack ($280/mo): 16 edited Shorts/Reels (4 per week) + Captions + Re-hooks (Most Popular)
+• Scale Pack ($450/mo): 30 Shorts/Reels (Daily posting) + Complete Video Repurposing
+
+We handle everything via a shared Google Drive with 24-48 hr turnaround. Which tier fits your current publishing goals?</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('প্রাইসিং মেনু কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Tap to Copy
+      </button>
+    </div>
+
+    <!-- CHAPTER 5: LOGISTICS & OFFLINE BUFFER -->
+    <div class="chapter-header">
+      <i data-lucide="zap"></i>
+      <h2>অধ্যায় ৫: মফস্বল লজিস্টিকস—লোডশেডিং, লো-ব্যান্ডউইথ ও অফলাইন বাফার</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" style="color: var(--primary);">
+          <i data-lucide="clock" style="width: 16px; height: 16px;"></i> ৪৮ ঘণ্টার বাফার ও অফলাইন এডিট
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          • ক্লায়েন্টকে ডেডলাইন দেবেন <strong>৪৮ ঘণ্টা</strong>, কিন্তু ডেলিভারি করবেন <strong>২৪ ঘণ্টার মধ্যে</strong>। এতে ক্লায়েন্ট মুগ্ধ হয় এবং লোডশেডিংয়ের ঝামেলা সহজে সামলানো যায়।<br>
+          • সকালের দিকে (৭–৯টা) যখন মোবাইল ডাটা/ব্রডব্যান্ড স্পিড সর্বোচ্চ থাকে, তখন কাঁচা ভিডিও ক্লিপগুলো ফোনে সেভ করে নিন।<br>
+          • লোডশেডিংয়ের সময় ফোনের ব্যাটারি সেইভার অন করে সম্পূর্ণ অফলাইনে CapCut-এ কাটিং ও সাবটাইটেলিং শেষ করুন।
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: #b45309;">
+          <i data-lucide="wifi" style="width: 16px; height: 16px;"></i> ব্যাকআপ নেটওয়ার্ক আর্কিটেকচার
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          • ওয়াইফাই চলে গেলে যাতে ফাইল সেন্ডিং আটকে না যায়, সেজন্য ফোনে সবসময় একটি সেকেন্ডারি সিমের (GP বা Banglalink) ইমার্জেন্সি ৫GB ডাটা প্যাক অ্যাক্টিভ রাখুন।<br>
+          • একটি সাধারণ ১০,০০০ mAh পাওয়ার ব্যাংক ফুল চার্জ রাখুন যাতে কারেন্ট না থাকলেও ফোনের ডিসপ্লে অন রেখে কাজ শেষ করা যায়।
+        </p>
+      </div>
+    </div>
+
+    <!-- CHAPTER 6: BANKING & NBR COMPLIANCE -->
+    <div class="chapter-header">
+      <i data-lucide="scale"></i>
+      <h2>অধ্যায় ৬: বৈধ ব্যাংকিং, $১৫০ থ্রেশহোল্ড ক্যাশ-আউট ও এনবিআর জিরো রিটার্ন</h2>
+    </div>
+
+    <div class="card card-success" style="margin-bottom: 14px;">
+      <div class="card-title"><i data-lucide="dollar-sign" style="width: 16px; height: 16px;"></i> দ্য $১৫০ ক্যাশ-আউট স্ট্র্যাটেজি ($150 Threshold Rule)</div>
+      <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+        • <strong>$১৫০-এর নিচে হলে:</strong> দৈনন্দিন খরচের জন্য সরাসরি <a href="https://www.bkash.com/en/products-services/remittance/payoneer" target="_blank" class="btn-link">bKash Remittance</a>-এ তুলুন (২ মিনিটে ক্যাশ আউট, তবে ডলার রেট কিছুটা কম হতে পারে)।<br>
+        • <strong>$১৫০-এর বেশি হলে:</strong> সরাসরি লোকাল ব্যাংক একাউন্টে (City Bank, EBL, BRAC Bank) উইথড্র করুন। এতে আপনি ফুল ইন্টারব্যাংক এক্সচেঞ্জ রেট পাবেন এবং বাংলাদেশ ব্যাংকের <strong>২.৫% সরকারি নগদ প্রণোদনার</strong> অফিশিয়াল সার্টিফিকেট পাবেন।
+      </p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" style="color: var(--primary);">
+          <i data-lucide="building" style="width: 16px; height: 16px;"></i> বাংলাদেশ ব্যাংক এফই সার্কুলার ২২ (FE Circular 22)
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          আইটি ও ফ্রিল্যান্সিং রেমিট্যান্সে বছরে ২০,০০০ ডলার পর্যন্ত কোনো পূর্বানুমতি বা Form-C পূরণ ছাড়া সরাসরি ব্যাংকে আনা সম্পূর্ণ অনুমোদিত।
+        </p>
+        <a href="https://www.bb.org.bd/" target="_blank" class="btn-link" style="margin-top: 6px; font-size: 11.5px;">বাংলাদেশ ব্যাংক অফিশিয়াল পোর্টাল <i data-lucide="external-link" style="width: 10px; height: 10px;"></i></a>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-dark);">
+          <i data-lucide="file-check" style="width: 16px; height: 16px;"></i> এনবিআর জিরো ট্যাক্স রিটার্ন ও PRC
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          ফ্রিল্যান্সিং আয় আইটিইএস (ITES) ক্যাটাগরিতে করমুক্ত হলেও প্রতি বছর <strong>জিরো রিটার্ন</strong> দাখিল করা বাধ্যতামূলক। ব্যাংক থেকে PRC (Proceeds Realization Certificate) সংগ্রহ করে ফাইলে রাখুন।
+        </p>
+        <a href="https://etaxnbr.gov.bd/" target="_blank" class="btn-link" style="margin-top: 6px; font-size: 11.5px;">এনবিআর অনলাইন ই-ট্যাক্স সিস্টেম <i data-lucide="external-link" style="width: 10px; height: 10px;"></i></a>
+      </div>
+    </div>
+
+    <!-- CHAPTER 7: 30-DAY CHECKLIST -->
+    <div class="chapter-header">
+      <i data-lucide="calendar"></i>
+      <h2>অধ্যায় ৭: ৩০ দিনের রিয়েলিস্টিক চেকলিস্ট ও ডেইলি লগ</h2>
+    </div>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">১</div>
+        <div class="step-body">
+          <h4>সপ্তাহ ১ (দিন ১–৭): ভিত্তি ও ব্যাংকিং প্রিপারেশন</h4>
+          <p>স্মার্ট এনআইডির নাম অনুযায়ী <a href="https://www.payoneer.com/" target="_blank" class="btn-link">Payoneer</a> ও লোকাল ব্যাংক রেডি করুন। ফোনে CapCut ও Canva ইনস্টল করে ওয়াটারমার্ক রিমুভ টেস্ট করুন।</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">২</div>
+        <div class="step-body">
+          <h4>সপ্তাহ ২ (দিন ৮–১৪): ৩টি Unlisted ভিডিও স্যাম্পল</h4>
+          <p>ইউটিউব পডকাস্ট থেকে ৩টি ৪৫ সেকেন্ডের ক্লিপ নিয়ে ক্যাপকাটে বাউন্সি সাবটাইটেল সহ এডিট করুন এবং ইউটিউবে Unlisted হিসেবে আপলোড করে লিংক সেভ রাখুন।</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">৩</div>
+        <div class="step-body">
+          <h4>সপ্তাহ ৩ (দিন ১৫–২১): ১০০ আউটরিচ স্প্রিন্ট</h4>
+          <p>প্রতিদিন ১০ জন সক্রিয় ক্রিয়েটরকে (X/LinkedIn DMs) অধ্যায় ৪-এর স্ক্রিপ্ট ১ অনুযায়ী ভিডিও উপহার পাঠান। কোনো উত্তর না আসলে ৭২ ঘণ্টা পর স্ক্রিপ্ট ২ দিয়ে ফলো-আপ দিন।</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">৪</div>
+        <div class="step-body">
+          <h4>সপ্তাহ ৪ (দিন ২২–৩০): অনবোর্ডিং ও মান্থলি রিটেইনার</h4>
+          <p>প্রথম কাজ সন্তোষজনকভাবে ২৪ ঘণ্টার মধ্যে শেষ করে স্ক্রিপ্ট ৪-এর প্রাইসিং মেনু পাঠিয়ে ক্লায়েন্টকে মাসিক চুক্তিতে নিয়ে আসুন।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER 8: VERIFIED RESOURCE DIRECTORY -->
+    <div class="chapter-header">
+      <i data-lucide="folder-check"></i>
+      <h2>অধ্যায় ৮: ভেরিফায়েড রিসোর্স বান্ডেল ও হাইপারলিংক ডিরেক্টরি</h2>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>রিসোর্স টাইপ</th>
+          <th>প্ল্যাটফর্ম ও অফিসিয়াল পোর্টাল</th>
+          <th>কাজের বিবরণ ও সুবিধা</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ফ্রি রয়্যালটি-ফ্রি ভিডিও</strong></td>
+          <td><a href="https://www.pexels.com/" target="_blank" class="btn-link">Pexels Video</a> / <a href="https://pixabay.com/" target="_blank" class="btn-link">Pixabay</a></td>
+          <td>ভিডিও এডিটিংয়ের সময় ব্যাকগ্রাউন্ড B-roll ক্লিপ সম্পূর্ণ ফ্রিতে ডাউনলোড করার জন্য।</td>
+        </tr>
+        <tr>
+          <td><strong>ফ্রি সাউন্ড ইফেক্টস</strong></td>
+          <td><a href="https://freesound.org/" target="_blank" class="btn-link">Freesound.org</a></td>
+          <td>Whoosh, Pop, Mouse Click এবং ট্রানজিশন সাউন্ড ইফেক্ট সংগ্রহের সবচেয়ে বড় ডাটাবেস।</td>
+        </tr>
+        <tr>
+          <td><strong>ফ্রি ব্যাকগ্রাউন্ড ক্লিনআপ</strong></td>
+          <td><a href="https://www.photoroom.com/" target="_blank" class="btn-link">Photoroom Web/App</a></td>
+          <td>থাম্বনেইলের যেকোনো মডেল বা অবজেক্টের ব্যাকগ্রাউন্ড এক ক্লিকে পিএনজি করার টুল।</td>
+        </tr>
+        <tr>
+          <td><strong>ক্লায়েন্ট লিড ভেরিফিকেশন</strong></td>
+          <td><a href="https://hunter.io/" target="_blank" class="btn-link">Hunter.io Free Tier</a></td>
+          <td>যেকোনো কোম্পানির অফিশিয়াল ডোমেইন দিলে তাদের ডিসিশন মেকারদের ভেরিফায়েড ইমেইল বের করে।</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- AIS VERIFICATION & RIGHTS HUB -->
+    <div class="ais-rights-hub">
+      <div class="ais-hub-header">
+        <div class="ais-large-crest">AIS</div>
+        <div class="ais-hub-title">
+          <h3>Army IBA Specialist (AIS)</h3>
+          <p>অফিসিয়াল পাবলিকেশন, ডিস্ট্রিবিউশন ও লিগ্যাল কপিরাইট সাপোর্ট হাব</p>
+        </div>
+      </div>
+
+      <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 15px;">
+        এই "রিমোট ইনকাম ব্লুপ্রিন্ট" সম্পূর্ণভাবে <strong>Army IBA Specialist (AIS)</strong> দ্বারা পরিচালিত, সত্যায়িত ও সংরক্ষিত। যেকোনো টেকনিক্যাল সহায়তা, অথেনটিকেশন বা ভেরিফিকেশনের জন্য সরাসরি নিচের অফিসিয়াল লিংকে ক্লিক করে আমাদের সাথে যোগাযোগ করুন:
+      </p>
+
+      <div class="ais-contact-grid">
+        <!-- Facebook 1-Click -->
+        <a href="https://www.facebook.com/share/1ZSuGprkLY/" target="_blank" class="ais-contact-card">
+          <div class="ais-icon-wrap"><i data-lucide="facebook" style="width: 20px; height: 20px;"></i></div>
+          <div class="ais-contact-detail">
+            <strong>অফিসিয়াল ফেসবুক পেজ</strong>
+            <span>fb.com/Army-IBA-Specialist</span>
+          </div>
+        </a>
+
+        <!-- WhatsApp / Phone 1-Click -->
+        <a href="https://wa.me/8801410761298" target="_blank" class="ais-contact-card">
+          <div class="ais-icon-wrap"><i data-lucide="message-circle" style="width: 20px; height: 20px;"></i></div>
+          <div class="ais-contact-detail">
+            <strong>হোয়াটসঅ্যাপ সাপোর্ট লাইন</strong>
+            <span>+880 1410-761298</span>
+          </div>
+        </a>
+
+        <!-- Email 1-Click -->
+        <a href="mailto:armyibaspecialist@gmail.com" class="ais-contact-card">
+          <div class="ais-icon-wrap"><i data-lucide="mail" style="width: 20px; height: 20px;"></i></div>
+          <div class="ais-contact-detail">
+            <strong>অফিসিয়াল ই-মেইল ডেস্ক</strong>
+            <span>armyibaspecialist@gmail.com</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="rights-notice">
+        <strong>কপিরাইট ও বিতরণ সংক্রান্ত নির্দেশিকা:</strong> এই ফিল্ড ম্যানুয়ালের যাবতীয় বুদ্ধিবৃত্তিক স্বত্ব (Intellectual Property Rights) <strong>Army IBA Specialist (AIS)</strong>-এর নিজস্ব নিয়ন্ত্রণাধীন। AIS-এর অফিশিয়াল অনুমতি ব্যতীত এই ব্লুপ্রিন্টটি কোনো প্রকার অননুমোদিত প্ল্যাটফর্মে পুনঃবিক্রয়, বাণিজ্যিক বিতরণ বা বিকৃত করা কপিরাইট আইন ও আইসিটি অ্যাক্ট অনুযায়ী সম্পূর্ণ দণ্ডনীয় অপরাধ।
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span>রিমোট ইনকাম ব্লুপ্রিন্ট © ২০২৬ — অল রাইটস রিজার্ভড বাই Army IBA Specialist (AIS)</span>
+      <span>ইন্টারঅ্যাক্টিভ ও ভেরিফায়েবল পিডিএফ ভিউয়ের জন্য প্রস্তুত</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Initialize Lucide Icons
+  lucide.createIcons();
+
+  // Interactive Quiz Engine State
+  const quizState = {
+    time: null,
+    eng: null,
+    pref: null
+  };
+
+  function selectOption(category, value, el) {
+    quizState[category] = value;
+    
+    // UI Active toggle
+    const parent = el.parentElement;
+    Array.from(parent.children).forEach(btn => btn.classList.remove('active'));
+    el.classList.add('active');
+
+    // Check if all 3 questions answered
+    if (quizState.time && quizState.eng && quizState.pref) {
+      calculateRecommendation();
+    }
+  }
+
+  function calculateRecommendation() {
+    const resultPanel = document.getElementById('engine-result');
+    const resTitle = document.getElementById('res-title');
+    const resBadge = document.getElementById('res-badge');
+    const resDesc = document.getElementById('res-desc');
+    const resEarning = document.getElementById('res-earning');
+    const resTime = document.getElementById('res-time');
+    const resPlatform = document.getElementById('res-platform');
+    const resResources = document.getElementById('res-resources');
+
+    resultPanel.style.display = 'block';
+
+    // Route logic
+    if (quizState.eng === 'low' || quizState.pref === 'visual') {
+      // Visual Track: Shorts & Thumbnails
+      resTitle.innerText = "শর্ট-ফর্ম ভিডিও এডিটিং ও ভিজ্যুয়াল রি-হুকার (Visual Track)";
+      resBadge.innerText = "লো-ইংলিশে ১০০% কার্যকর";
+      resBadge.className = "badge-free";
+      resDesc.innerText = "আপনার জন্য সেরা পছন্দ CapCut মোবাইল দিয়ে ইউটিউব/টিকটক রিলস এডিটিং। এতে কোনো স্পোকেন ইংলিশের দরকার নেই, শুধু এআই দিয়ে সাবটাইটেল ও ০.৩ সেকেন্ডের কাটিং দিয়ে ৫ সেকেন্ডেই আমেরিকান ক্লায়েন্টকে মুগ্ধ করা যায়।";
+      resEarning.innerText = "$২০০ – $৪৫০/মাস (প্রতি ভিডিও $১৫–$২৫)";
+      resTime.innerText = "৫ – ৭ দিন (টুল শেখা)";
+      resPlatform.innerText = "X (Twitter) & YouTube Inboxes";
+      resResources.innerHTML = `
+        <a href="https://www.capcut.com/" target="_blank" class="btn-link" style="color: #38bdf8;">CapCut Mobile</a>
+        <a href="https://www.pexels.com/" target="_blank" class="btn-link" style="color: #38bdf8;">Pexels B-Roll</a>
+        <a href="https://freesound.org/" target="_blank" class="btn-link" style="color: #38bdf8;">Freesound SFX</a>
+      `;
+    } else if (quizState.pref === 'data' || (quizState.time === 'part' && quizState.eng === 'mid')) {
+      // Data Track: Lead Gen
+      resTitle.innerText = "B2B লিড জেনারেশন ও প্রস্পেক্ট ডাটাবেস বিল্ডিং (Data Track)";
+      resBadge.innerText = "চাকরিজীবীদের জন্য পারফেক্ট";
+      resBadge.className = "badge-freemium";
+      resDesc.innerText = "অফিস শেষে রাতে মাত্র ১–২ ঘণ্টা গুগলে ও লিঙ্কডইনে সার্চ করে নির্দিষ্ট কোম্পানির সিইও ও ডিরেক্টরদের ভেরিফায়েড ইমেইল গুগল শিটে তুলে দেবেন। একদম ম্যাথমেটিক্যাল কাজ, ক্লায়েন্ট স্প্রেডশিট খুলেই ডাটা দেখে পেমেন্ট করে দেয়।";
+      resEarning.innerText = "$১৫০ – $৩৫০/মাস (প্রতি ১০০ লিড $২৫–$৪০)";
+      resTime.innerText = "৩ – ৫ দিন";
+      resPlatform.innerText = "LinkedIn & Direct Email";
+      resResources.innerHTML = `
+        <a href="https://hunter.io/" target="_blank" class="btn-link" style="color: #38bdf8;">Hunter.io Free</a>
+        <a href="https://www.google.com/sheets/about/" target="_blank" class="btn-link" style="color: #38bdf8;">Google Sheets</a>
+        <a href="https://apollo.io/" target="_blank" class="btn-link" style="color: #38bdf8;">Apollo.io Web</a>
+      `;
+    } else {
+      // Ops / High English: Virtual Ops & Ghostwriting
+      resTitle.innerText = "এক্সিকিউটিভ রিমোট অপারেশনস ও লিঙ্কডইন অ্যাসিস্ট্যান্ট (Ops Track)";
+      resBadge.innerText = "হাই-টিকেট মান্থলি রিটেইনার";
+      resBadge.className = "badge-free";
+      resDesc.innerText = "যেহেতু আপনার টেক্সট কমিউনিকেশন ভালো, আপনি পশ্চিমা ফাউন্ডারদের ইমেইল ইনবক্স ম্যানেজ, ক্যালেন্ডার শিডিউলিং বা তাদের লিঙ্কডইনে নিয়মিত পোস্ট শিডিউল করার মাসিক অ্যাসিস্ট্যান্ট হিসেবে কাজ করতে পারবেন।";
+      resEarning.innerText = "$৩০০ – $৬০০/মাস (ফিক্সড মান্থলি)";
+      resTime.innerText = "৭ – ১০ দিন";
+      resPlatform.innerText = "LinkedIn InMail & Slack Direct";
+      resResources.innerHTML = `
+        <a href="https://gemini.google.com/" target="_blank" class="btn-link" style="color: #38bdf8;">Google Gemini AI</a>
+        <a href="https://chatgpt.com/" target="_blank" class="btn-link" style="color: #38bdf8;">ChatGPT Text Desk</a>
+        <a href="https://trello.com/" target="_blank" class="btn-link" style="color: #38bdf8;">Trello Workspace</a>
+      `;
+    }
+
+    lucide.createIcons();
+  }
+</script>
+
+</body>
+</html>
