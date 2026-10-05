@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>রিমোট ইনকাম ব্লুপ্রিন্ট (মাস্টার রিলিজ এডিশন): জিরো স্কিল ও স্মার্টফোন দিয়ে আন্তর্জাতিক আয়ের ফিল্ড ম্যানুয়াল</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  :root {
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+    --accent: #10b981;
+    --accent-dark: #047857;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg-surface: #ffffff;
+    --bg-page: #080e1a;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border: #e2e8f0;
+    --code-bg: #0b1329;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+    background-color: #f1f5f9;
+    color: var(--text-main);
+    line-height: 1.65;
+    font-size: 14px;
+    padding: 20px 10px;
+  }
+
+  .ebook-container {
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  /* Cover Styling */
+  .cover {
+    background: linear-gradient(140deg, #060d1d 0%, #0d2342 60%, #06152b 100%);
+    color: #ffffff;
+    padding: 65px 45px 55px;
+    text-align: center;
+    position: relative;
+    border-bottom: 5px solid var(--primary);
+  }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(2, 132, 199, 0.25);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: #38bdf8;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .cover h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    color: #f8fafc;
+  }
+
+  .cover p {
+    font-size: 16px;
+    color: #94a3b8;
+    max-width: 720px;
+    margin: 0 auto 28px;
+  }
+
+  .cover-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    font-size: 12.5px;
+    color: #cbd5e1;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 22px;
+  }
+
+  .cover-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Body Content */
+  .content {
+    padding: 45px 50px;
+  }
+
+  @media (max-width: 768px) {
+    .content { padding: 25px 20px; }
+    .cover { padding: 45px 20px; }
+    .cover h1 { font-size: 24px; }
+  }
+
+  /* Chapter Title Header */
+  .chapter-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 42px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .chapter-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .chapter-header i {
+    width: 26px;
+    height: 26px;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .chapter-header h2 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* Grid Layouts */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 18px 0;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin: 18px 0;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* Structural Cards */
+  .card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+
+  .card-danger { background: #fff5f5; border-color: #fecaca; }
+  .card-success { background: #f0fdf4; border-color: #bbf7d0; }
+  .card-warning { background: #fffbeb; border-color: #fde68a; }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+
+  .card-danger .card-title { color: var(--danger); }
+  .card-success .card-title { color: var(--accent-dark); }
+  .card-warning .card-title { color: #b45309; }
+
+  /* Interactive Script Boxes */
+  .interactive-box {
+    background: var(--code-bg);
+    color: #f1f5f9;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    position: relative;
+    border: 1px solid #1e293b;
+  }
+
+  .box-label {
+    position: absolute;
+    top: -10px;
+    right: 14px;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .script-content {
+    font-family: 'JetBrains Mono', 'Plus Jakarta Sans', monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    color: #cbd5e1;
+  }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #38bdf8;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    background: #334155;
+    color: #ffffff;
+  }
+
+  /* Data Table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 13px;
+  }
+
+  .data-table th, .data-table td {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .data-table th {
+    background: #f1f5f9;
+    color: var(--text-main);
+    font-weight: 700;
+  }
+
+  .data-table tr:nth-child(even) { background: #fafafa; }
+
+  /* Conversion Funnel */
+  .funnel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 18px 0;
+  }
+
+  .funnel-stage {
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 16px;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+
+  .funnel-rate {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 700;
+  }
+
+  /* Step by Step Progression */
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 18px 0;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 14px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    border-radius: 8px;
+  }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    background: var(--primary);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .step-body h4 {
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .step-body p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  /* Hyperlinks */
+  .btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dashed var(--primary);
+  }
+
+  .btn-link:hover {
+    color: var(--primary-dark);
+    border-bottom-style: solid;
+  }
+
+  .badge-free { background: #dcfce7; color: #15803d; font-size: 10.5px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .badge-freemium { background: #fef3c7; color: #b45309; font-size: 10.5px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="ebook-container">
+
+  <!-- COVER PAGE -->
+  <div class="cover">
+    <div class="cover-badge">
+      <i data-lucide="award" style="width: 14px; height: 14px;"></i>
+      মাস্টার রিলিজ এডিশন: বাংলাদেশী ফ্রিল্যান্সিং চ্যাম্পিয়ন ও কমপ্লায়েন্স ভেরিফায়েড
+    </div>
+    <h1>রিমোট ইনকাম ব্লুপ্রিন্ট</h1>
+    <p>সাধারণ স্মার্টফোন দিয়ে শূন্য থেকে আন্তর্জাতিক ক্লায়েন্ট খুঁজে সরাসরি বৈধ চ্যানেলে বৈদেশিক মুদ্রা উপার্জনের চূড়ান্ত ফিল্ড ম্যানুয়াল</p>
+
+    <div class="cover-meta">
+      <span><i data-lucide="smartphone" style="width: 14px; height: 14px;"></i> মোবাইল-ফার্স্ট প্রোডাকশন</span>
+      <span><i data-lucide="send" style="width: 14px; height: 14px;"></i> স্প্যাম-ফ্রি আউটরিচ ইঞ্জিন</span>
+      <span><i data-lucide="zap" style="width: 14px; height: 14px;"></i> লোডশেডিং ও অফলাইন বাফার</span>
+      <span><i data-lucide="shield-check" style="width: 14px; height: 14px;"></i> এনবিআর ও ব্যাংকিং সুরক্ষা</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- CHAPTER 1 -->
+    <div class="chapter-header">
+      <i data-lucide="trending-up"></i>
+      <h2>অধ্যায় ১: লোকাল আইটি সিন্ডিকেটের ফাঁদ ও প্রোবাবিলিটি ম্যাথ</h2>
+    </div>
+
+    <p>বাংলাদেশে ৯৫% নতুন ফ্রিল্যান্সার প্রথম ৩ সপ্তাহের মধ্যে ঝরে পড়েন। কারণ তাদের ডাটা এন্ট্রি বা ক্লিকের মতো অপ্রয়োজনীয় কোর্স করিয়ে উপার্জনের অবাস্তব স্বপ্ন দেখানো হয়। আন্তর্জাতিক ক্লায়েন্ট অর্জনের ভিত্তি কোনো ম্যাজিক নয়; এটি ১০০% <strong>পরিসংখ্যান ও নিখুঁত সংখ্যার খেলা</strong>।</p>
+
+    <div class="funnel-container">
+      <div class="funnel-stage">
+        <span><strong>ধাপ ১: ভ্যালু-ফার্স্ট আউটরিচ প্রেরণ</strong> (আগে তৈরি করা স্যাম্পল উপহার সহ)</span>
+        <span class="funnel-rate">১০০ টি মেসেজ</span>
+      </div>
+      <div class="funnel-stage">
+        <span><strong>ধাপ ২: ক্লায়েন্ট রিপ্লাই ও প্রাথমিক আলোচনা</strong></span>
+        <span class="funnel-rate">৬ – ৮ টি উত্তর (৬-৮%)</span>
+      </div>
+      <div class="funnel-stage">
+        <span><strong>ধাপ ৩: টেস্ট স্যাম্পল রিভিউ ও প্যাকেজ সিলেকশন</strong></span>
+        <span class="funnel-rate">২ – ৩ জন ক্লায়েন্ট</span>
+      </div>
+      <div class="funnel-stage" style="background: #f0fdf4; border-color: #bbf7d0;">
+        <span><strong style="color: var(--accent-dark);">ধাপ ৪: চূড়ান্ত মাসিক চুক্তি (Monthly Retainer)</strong></span>
+        <span class="funnel-rate" style="background: #dcfce7; color: #166534;">১ জন ফিক্সড ক্লায়েন্ট ($২৫০–$৪৫০/মাস)</span>
+      </div>
+    </div>
+
+    <div class="card card-warning" style="margin-top: 14px;">
+      <div class="card-title"><i data-lucide="shield-alert" style="width: 16px; height: 16px;"></i> ডে-১০ সাইকোলজিক্যাল প্লাটো (হতাশা কাটানোর নিয়ম)</div>
+      <p style="font-size: 13px; color: var(--text-muted);">
+        প্রথম ১০ দিনে ৩০–৪০টি মেসেজ পাঠানোর পরও যখন কোনো রিপ্লাই আসে না, তখন আমাদের ব্রেইন ভাবতে শুরু করে: "আমাকে দিয়ে হবে না।" মনে রাখবেন: <strong>ক্লায়েন্টের নিরবতা মানে আপনার অযোগ্যতা নয়; এটি সাধারণ কোল্ড কনভার্শন রেট।</strong> ১০০টি সুনির্দিষ্ট মেসেজ শেষ করার আগে প্রক্রিয়া বিচার করবেন না।
+      </p>
+    </div>
+
+    <!-- CHAPTER 2 -->
+    <div class="chapter-header">
+      <i data-lucide="video"></i>
+      <h2>অধ্যায় ২: মোবাইল প্রোডাকশন ও জিরো-ফ্রিকশন ডেলিভারি</h2>
+    </div>
+
+    <p>আন্তর্জাতিক ক্লায়েন্টরা কোনো ২০MB গুগল ড্রাইভ ফাইল ডাউনলোড করে দেখার সময় পান না। প্রথম ইমপ্রেশনেই কাজ প্লে হতে হবে।</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" style="color: var(--primary);">
+          <i data-lucide="sliders" style="width: 16px; height: 16px;"></i> CapCut মোবাইল এডিটিং রুলস
+        </div>
+        <ul style="padding-left: 18px; font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          <li><strong>Outro Watermark ডিলিট:</strong> টাইমলাইনের একেবারে শেষে থাকা ২ সেকেন্ডের ডিফল্ট ব্ল্যাক CapCut লোগো ক্লিপটি ট্যাপ করে নিশ্চিতভাবে Delete করুন।</li>
+          <li><strong>Dead Space কাটিং:</strong> কথার মাঝের ০.৩ সেকেন্ডের বেশি কোনো নীরবতা বা পজ রাখবেন না।</li>
+          <li><strong>Auto-Captions:</strong> ইংরেজি সাবটাইটেল জেনারেট করে ২–৩ শব্দের হাইলাইটেড বাউন্সি অ্যানিমেশন দিন।</li>
+          <li><strong>১০৮০p ৬০fps এক্সপোর্ট:</strong> এক্সপোর্ট সেটিংসে হাই-কোয়ালিটি সিলেক্ট করুন।</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-dark);">
+          <i data-lucide="play-circle" style="width: 16px; height: 16px;"></i> জিরো-ফ্রিকশন স্ট্রিমিং মেথড
+        </div>
+        <ul style="padding-left: 18px; font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          <li><strong>কখনই ড্রাইভ লিংক নয়:</strong> গুগল ড্রাইভে অনেক সময় "Request Access" এর ঝামেলা থাকে।</li>
+          <li><strong>Unlisted YouTube Shorts:</strong> আপনার তৈরি শর্ট ভিডিওটি ইউটিউবে আপলোড করে ভিজিবিলিটি দিন <strong>"Unlisted"</strong>।</li>
+          <li><strong>১-ট্যাপ প্রিভিউ:</strong> ক্লায়েন্ট লিংকে ক্লিক করলেই কোনো লগইন ছাড়া সরাসরি ফোনে ভিডিও চলতে শুরু করবে।</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CHAPTER 3 -->
+    <div class="chapter-header">
+      <i data-lucide="cpu"></i>
+      <h2>অধ্যায় ৩: AI পাওয়ার স্ট্যাক ও ফ্রি রিসোর্স ডিরেক্টরি</h2>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ক্যাটাগরি</th>
+          <th>টুল ও লিঙ্ক</th>
+          <th>টিয়ার</th>
+          <th>কোন কাজে সেরা?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>কমিউনিকেশন ও স্ক্রিপ্ট</strong></td>
+          <td><a href="https://gemini.google.com/" target="_blank" class="btn-link">Google Gemini</a> / <a href="https://chatgpt.com/" target="_blank" class="btn-link">ChatGPT</a></td>
+          <td><span class="badge-free">১০০% ফ্রি</span></td>
+          <td>বাংলায় ভাব লিখলে ৩ বাক্যের ঝরঝরে আমেরিকান বিজনেস মেসেজ বানিয়ে দেয়।</td>
+        </tr>
+        <tr>
+          <td><strong>পোস্টার ও থাম্বনেইল আর্ট</strong></td>
+          <td><a href="https://ideogram.ai/" target="_blank" class="btn-link">Ideogram.ai</a></td>
+          <td><span class="badge-freemium">ফ্রি ক্রেডিট</span></td>
+          <td>ইমেজের মধ্যে নির্ভুল স্পেলিংযুক্ত ইংরেজি টেক্সট এবং ব্যাকগ্রাউন্ড তৈরিতে অতুলনীয়।</td>
+        </tr>
+        <tr>
+          <td><strong>অডিও স্টুডিও এনহ্যান্স</strong></td>
+          <td><a href="https://podcast.adobe.com/enhance" target="_blank" class="btn-link">Adobe Podcast AI</a></td>
+          <td><span class="badge-free">১০০% ফ্রি</span></td>
+          <td>মোবাইল বা ফ্যানের নয়েজযুক্ত বাজে ভয়েসকে ১ ক্লিকে রেডিও কোয়ালিটি করে দেয়।</td>
+        </tr>
+        <tr>
+          <td><strong>ভিডিও অটো-ক্যাপশন</strong></td>
+          <td><a href="https://www.capcut.com/" target="_blank" class="btn-link">CapCut Desktop/App</a></td>
+          <td><span class="badge-free">ফ্রি ভার্সন</span></td>
+          <td>ভিডিও শুনে স্বয়ংক্রিয়ভাবে ট্রেন্ডি অ্যানিমেটেড সাবটাইটেল তৈরি করে।</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CHAPTER 4 -->
+    <div class="chapter-header">
+      <i data-lucide="send"></i>
+      <h2>অধ্যায় ৪: স্প্যাম-ফ্রি আউটরিচ ইঞ্জিন ও প্রাইসিং মেনু</h2>
+    </div>
+
+    <div class="card card-danger" style="margin-bottom: 14px;">
+      <div class="card-title"><i data-lucide="alert-octagon" style="width: 16px; height: 16px;"></i> ফ্রি জিমেইল স্প্যাম ট্র্যাপ</div>
+      <p style="font-size: 12.5px; color: var(--text-muted);">
+        ফ্রি জিমেইল (যেমন: `myname@gmail.com`) থেকে ইউএসএ-র কোম্পানির অফিশিয়াল ডোমেইনে কোল্ড ইমেইল পাঠালে তা স্প্যাম ফোল্ডারে চলে যায়। তাই <strong>সরাসরি প্ল্যাটফর্মে যোগাযোগ করুন (X DMs, LinkedIn Connection Note, Instagram DMs)</strong> অথবা ক্রিয়েটরদের পাবলিক বিজনেস ইনকোয়ারি মেইলে পাঠান।
+      </p>
+    </div>
+
+    <!-- Script 1 -->
+    <div class="interactive-box">
+      <div class="box-label">স্ক্রিপ্ট ১: প্রাথমিক ভ্যালু পিচ (YouTube Unlisted Link সহ)</div>
+      <div class="script-content">Subject: Vertical Short edit for your recent episode on [Topic]
+
+Hi [Name], loved your point on [Specific Insight from their video].
+
+I noticed your YouTube channel is missing vertical Shorts to capture mobile audiences, so I took 45 seconds of your latest episode and edited it with dynamic captions and pacing: [Insert Unlisted YouTube Shorts Link]
+
+If you like the editing, feel free to post it right away. If you'd like 12 of these per month managed for you on autopilot, I can handle them directly.</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('স্ক্রিপ্ট ১ কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Tap to Copy
+      </button>
+    </div>
+
+    <!-- Script 2 -->
+    <div class="interactive-box">
+      <div class="box-label">স্ক্রিপ্ট ২: ৭২ ঘণ্টা পর ফলো-আপ (নো-রিপ্লাই বাফার)</div>
+      <div class="script-content">Hi [Name], just checking in to see if you had a chance to watch the 45-second vertical cut I sent earlier: [Re-insert Unlisted Link]
+
+No worries if you're swamped right now. If you'd like me to optimize another clip with a different pacing style, let me know!</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('ফলো-আপ স্ক্রিপ্ট কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Tap to Copy
+      </button>
+    </div>
+
+    <!-- Script 3 -->
+    <div class="interactive-box">
+      <div class="box-label">স্ক্রিপ্ট ৩: ৩-টায়ার প্রাইসিং মেনু (দরদাম দূর করার উপায়)</div>
+      <div class="script-content">Hi [Name], I keep pricing simple and predictable based on monthly deliverables:
+
+• Starter Pack ($150/mo): 8 edited vertical Shorts/Reels (2 per week) + Custom Thumbnails
+• Growth Pack ($280/mo): 16 edited Shorts/Reels (4 per week) + Captions + Re-hooks (Most Popular)
+• Scale Pack ($450/mo): 30 Shorts/Reels (Daily posting) + Complete Video Repurposing
+
+We handle everything via a shared Google Drive with 24-48 hr turnaround. Which tier fits your current publishing goals?</div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); alert('প্রাইসিং মেনু কপি হয়েছে!');">
+        <i data-lucide="copy" style="width: 12px; height: 12px;"></i> Tap to Copy
+      </button>
+    </div>
+
+    <!-- CHAPTER 5 -->
+    <div class="chapter-header">
+      <i data-lucide="zap"></i>
+      <h2>অধ্যায় ৫: মফস্বল বাস্তবতা—লোডশেডিং ও অফলাইন প্রোডাকশন বাফার</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" style="color: var(--primary);">
+          <i data-lucide="clock" style="width: 16px; height: 16px;"></i> ৪৮ ঘণ্টার বাফার ও অফলাইন এডিট
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          • ক্লায়েন্টকে কাজের সময় দেবেন <strong>৪৮ ঘণ্টা</strong>, কিন্তু ডেলিভারি করবেন <strong>২৪ ঘণ্টার মধ্যে</strong>।<br>
+          • সকালের দিকে (৭–৯টা) যখন ইন্টারনেট ফাস্ট থাকে, তখন কাঁচা ভিডিও ক্লিপগুলো ডাউনলোড করে নিন।<br>
+          • লোডশেডিংয়ের সময় ফোনের ব্যাটারি বাঁচিয়ে সম্পূর্ণ অফলাইনে CapCut-এ কাটিং ও সাবটাইটেলিং শেষ করুন।
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: #b45309;">
+          <i data-lucide="wifi" style="width: 16px; height: 16px;"></i> ব্যাকআপ ডাটা ও পাওয়ার ব্যাংক
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          • ব্রডব্যান্ড লাইন বন্ধ হয়ে গেলে যাতে ডেলিভারি আটকে না যায়, সেজন্য ফোনে সবসময় একটি সেকেন্ডারি সিমের (GP বা Banglalink) ইমার্জেন্সি ৫GB ডাটা প্যাক অ্যাক্টিভ রাখুন।<br>
+          • একটি সাধারণ ১০,০০০ mAh পাওয়ার ব্যাংক ফুল চার্জ রাখুন যাতে কারেন্ট না থাকলেও কাজ চালিয়ে যাওয়া যায়।
+        </p>
+      </div>
+    </div>
+
+    <!-- CHAPTER 6 -->
+    <div class="chapter-header">
+      <i data-lucide="shield-check"></i>
+      <h2>অধ্যায় ৬: বৈধ ব্যাংকিং, $১৫০ থ্রেশহোল্ড রুল ও এনবিআর রিটার্ন</h2>
+    </div>
+
+    <div class="card card-success" style="margin-bottom: 14px;">
+      <div class="card-title"><i data-lucide="dollar-sign" style="width: 16px; height: 16px;"></i> দ্য $১৫০ ক্যাশ-আউট স্ট্র্যাটেজি ($150 Threshold Rule)</div>
+      <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+        • <strong>$১৫০-এর নিচে হলে:</strong> জরুরি খরচের জন্য সরাসরি <a href="https://www.bkash.com/en/products-services/remittance/payoneer" target="_blank" class="btn-link">bKash Remittance</a>-এ তুলুন (২ মিনিটে ক্যাশ আউট, কিন্তু ডলার রেট ২-৩ টাকা কম পাবেন)।<br>
+        • <strong>$১৫০-এর বেশি হলে:</strong> সরাসরি লোকাল ব্যাংক একাউন্টে (City Bank, EBL, BRAC Bank) উইথড্র করুন। এতে আপনি ফুল ইন্টারব্যাংক এক্সচেঞ্জ রেট পাবেন এবং সরকারি <strong>২.৫% নগদ প্রণোদনার</strong> ডকুমেন্ট পাবেন।
+      </p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title" style="color: var(--primary);">
+          <i data-lucide="building" style="width: 16px; height: 16px;"></i> বাংলাদেশ ব্যাংক এফই সার্কুলার ২২
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          আইটি ও ফ্রিল্যান্সিং রেমিট্যান্সে বছরে ২০,০০০ ডলার পর্যন্ত কোনো পূর্বানুমতি বা Form-C ছাড়া সরাসরি ব্যাংকে আনা সম্পূর্ণ বৈধ।
+        </p>
+        <a href="https://www.bb.org.bd/" target="_blank" class="btn-link" style="margin-top: 6px; font-size: 11.5px;">বাংলাদেশ ব্যাংক নির্দেশিকা <i data-lucide="external-link" style="width: 10px; height: 10px;"></i></a>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-dark);">
+          <i data-lucide="file-check" style="width: 16px; height: 16px;"></i> এনবিআর জিরো রিটার্ন ও PRC
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          ফ্রিল্যান্সিং আয় করমুক্ত হলেও প্রতি বছর <strong>জিরো রিটার্ন</strong> দাখিল করা বাধ্যতামূলক। ব্যাংক থেকে PRC (Proceeds Realization Certificate) সংগ্রহ করে রাখুন।
+        </p>
+        <a href="https://etaxnbr.gov.bd/" target="_blank" class="btn-link" style="margin-top: 6px; font-size: 11.5px;">অনলাইন ই-ট্যাক্স পোর্টাল <i data-lucide="external-link" style="width: 10px; height: 10px;"></i></a>
+      </div>
+    </div>
+
+    <!-- CHAPTER 7 -->
+    <div class="chapter-header">
+      <i data-lucide="calendar"></i>
+      <h2>অধ্যায় ৭: ৩০ দিনের রিয়েলিস্টিক চেকলিস্ট</h2>
+    </div>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">১</div>
+        <div class="step-body">
+          <h4>সপ্তাহ ১ (দিন ১–৭): ভিত্তি ও ব্যাংকিং প্রিপারেশন</h4>
+          <p>স্মার্ট এনআইডির তথ্য অনুযায়ী <a href="https://www.payoneer.com/" target="_blank" class="btn-link">Payoneer</a> ও লোকাল ব্যাংক রেডি করুন। ফোনে CapCut ও Canva ইনস্টল করে ওয়াটারমার্ক রিমুভ টেস্ট করুন।</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">২</div>
+        <div class="step-body">
+          <h4>সপ্তাহ ২ (দিন ৮–১৪): ৩টি Unlisted ভিডিও স্যাম্পল</h4>
+          <p>ইউটিউব পডকাস্ট থেকে ৩টি ৪৫ সেকেন্ডের ক্লিপ নিয়ে ক্যাপকাটে বাউন্সি সাবটাইটেল সহ এডিট করুন এবং ইউটিউবে Unlisted হিসেবে আপলোড করে লিংক সেভ রাখুন।</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">৩</div>
+        <div class="step-body">
+          <h4>সপ্তাহ ৩ (দিন ১৫–২১): ১০০ আউটরিচ স্প্রিন্ট</h4>
+          <p>প্রতিদিন ১০ জন সক্রিয় ক্রিয়েটরকে (X/LinkedIn DMs) অধ্যায় ৪-এর স্ক্রিপ্ট ১ অনুযায়ী ভিডিও উপহার পাঠান। কোনো উত্তর না আসলে ৭২ ঘণ্টা পর স্ক্রিপ্ট ২ দিয়ে ফলো-আপ দিন।</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">৪</div>
+        <div class="step-body">
+          <h4>সপ্তাহ ৪ (দিন ২২–৩০): অনবোর্ডিং ও মান্থলি রিটেইনার</h4>
+          <p>প্রথম কাজ সন্তোষজনকভাবে ২৪ ঘণ্টার মধ্যে শেষ করে স্ক্রিপ্ট ৩-এর প্রাইসিং মেনু পাঠিয়ে ক্লায়েন্টকে মাসিক চুক্তিতে নিয়ে আসুন।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span>রিমোট ইনকাম ব্লুপ্রিন্ট © ২০২৬ — মাস্টার রিলিজ সংস্করণ</span>
+      <span>ইন্টারঅ্যাক্টিভ ও ভেরিফায়েবল পিডিএফ ভিউয়ের জন্য প্রস্তুত</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Initialize Lucide SVG Icons
+  lucide.createIcons();
+</script>
+
+</body>
+</html>
